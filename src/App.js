@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import Counter from './Counter';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { connect } from 'react-redux';
+
+function mapStates(state) {
+  return {
+    count: state.countHamburger,
+  };
 }
 
-export default App;
+function mapDispatch(dispatch) {
+  return {
+    inc: () => dispatch({ type: 'INC' }),
+    dec: () => dispatch({ type: 'DEC' }),
+  };
+}
+
+export default connect(mapStates, mapDispatch)(Counter);
